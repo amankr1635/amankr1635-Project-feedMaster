@@ -1,32 +1,20 @@
 const mongoose =require("mongoose");
 
-// const linksData = new mongoose.Schema({
-//     userId:{
-//         type:mongoose.Schema.Types.ObjectId,
-//         required:true
-//     },
-//     youtube:{
-//         type:String
-//     },
-//     twitter:{
-//         type:String
-//     },
-//     faceBook:{
-//         type:String
-//     },
-//     isDeleted:{
-//         type:Boolean,
-//         default:false
-//     }
-// },{timestamps:true})
-
 const urlSchema = new mongoose.Schema({
-    url: String,
+    userId : mongoose.Schema.Types.ObjectId,
     title: String,
     author_name: String,
+    author_url: String,
+    type:String,
+    height:String,
+    width:String,
+    version:String,
     provider_name: String,
-    thumbnail_url: String
-  });
+    provider_url:String,
+    thumbnail_height:String,
+    thumbnail_width:String,
+    thumbnail_url: String,
+    html : String
+  },{timestamps:true});
 
-// module.exports = mongoose.model("linksData",linksData)
 module.exports = mongoose.model("urlData",urlSchema)

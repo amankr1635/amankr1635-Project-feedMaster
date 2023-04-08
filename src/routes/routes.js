@@ -10,12 +10,11 @@ router.get("/test-me",(req,res)=>{
 
 router.post("/signUp",  CreateUser);
 router.post("/login",userLogin);
-console.log("from routes")
-router.post("/post",authentication,authorization ,createPost);
+router.post("/post",authentication,createPost);
 
- // from where do i get userID from params or body for creation of post and authorization.
+ 
 // oembed in backend save ombed code in db while creating post
-router.delete("/postDelete/:postId",authentication, deletePost);
+router.delete("/post/:postId",authentication, deletePost);
 
 
 

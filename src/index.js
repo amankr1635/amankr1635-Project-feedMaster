@@ -1,16 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const route = require("./routes/routes");
+const cors = require("cors")
+require("dotenv").config()
 const app =express()
+app.use(cors())
 
 app.use(express.json())
 
-mongoose.connect("mongodb+srv://amankr1635:ZOOTSxWCMvv5xP1H@cluster0.lrsbq7y.mongodb.net/projectFeedMaster")
+mongoose.connect(process.env.mongo_Url)
 .then(()=> console.log("mongoDb is connected"))
 .catch((err)=> console.log(err))
 
 app.use("/",route)
 
-app.listen(3000,()=>{
-    console.log("server is running on port ",3000)
+app.listen(process.env.port,()=>{
+    console.log("server is running on port",`${process.env.port}`)
 })

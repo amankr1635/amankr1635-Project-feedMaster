@@ -1,36 +1,55 @@
 const postModel = require("../models/postModel");
+const {URL} = require("url");
 const axios = require("axios");
 
 
 const createPost =async function(req,res){
 try {
-        let body = req.body
-        let url =""
-        if(Object.keys(body).includes("youtube")){
-            url = `https://www.youtube.com/oembed?url=${body.youtube}&format=json`;
+        let userId = req.decodedToken.userId
+        let url = req.body.url
+        if(url=="")return res.status(400).send({status:false,message:"url cannot be empty"})
+        // let isValidUrl = await axios.get(url)
+        // if(!isValidUrl)return res.status(400).send({status:false,message:"enter a valid url"})
+
+        let oembedUrl =""
+        let parsedUrl = new URL(url)
+        if(parsedUrl.hostname=="youtu.be"){
+            oembedUrl = `https://www.youtube.com/oembed?url=${url}&format=json`;
         }
-        else if (Object.keys(body).includes("spotify")) {
-            url = `https://open.spotify.com/oembed?url=${body.sportify}&format=json`;
+        else if (parsedUrl.hostname=="open.spotify.com") {
+            oembedUrl = `https://open.spotify.com/oembed?url=${url}&format=json`;
         }
-        else if(Object.keys(body).includes("twitter")){
-            url = `https://publish.twitter.com/oembed?url=${body.twitter}`;
-        }
-        let data = await axios.get(url)
-        const newUrl = ({
-            url,
-            title: data.title,
-            author_name: data.author_name,
-            provider_name: data.provider_name,
-            thumbnail_url: data.thumbnail_url
-          });
-        let create = await postModel.create(newUrl)
+      else if (parsedUrl.hostname == "twitter.com") {
+            oembedUrl = `https://publish.twitter.com/oembed?url=${url}`;
+        // else if (parsedUrl.hostname === 'twitter.com') {
+        // // Use the generic oEmbed API endpoint instead of twitter specific endpoint
+        // oembedUrl = `https://noembed.com/embed?url=${url}&format=json`;
+      } else {
+        // Use the generic oEmbed API endpoint
+        oembedUrl = `https://noembed.com/embed?url=${url}&format=json`;
+      }
+        //   } else {
+        //     oembedUrl = `https://oembed.com/providers.json?url=${url}&format=json`;
+        //   }
+        // else if(parsedUrl.hostname=="twitter.com"){
+        //     oembedUrl = `https://publish.twitter.com/oembed?url=${url}`;
+        // }
+        // else {
+        //     // i am having issue here when i am giving url of some different website which is not defined in my code i find this url but it is not working
+        //     // oembedUrl = `https://oembed.com/providers.json?url=${url}&format=json`;
+        //     oembedUrl= `${url}`
+        // }
+        let checkUrl = await axios.get(oembedUrl)
+      
+        let obj =({userId:userId,...checkUrl.data})
+        let create = await postModel.create(obj)
         
-        return res.status(201).send({status:false,data:create})    
+        return res.status(201).send({status:true,message:"postCreated",data:create})    
 } catch (error) {
     return res.status(500).send({status:false,message:error.message})
 }
 }
-
+  
 
 const deletePost =async function(req,res){
 try {
