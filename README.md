@@ -19,7 +19,14 @@ password:{mandatory}}
     userId:{refrence to userModel},
     
     for oEmbed
-    {title:String,url:String,author_name:String,author_url:String,type:String,height:String,width:String,version:String,provider_name:String,
+    {title:String,url:String,
+    author_name:String,
+    author_url:String,
+    type:String,
+    height:String,
+    width:String,
+    version:String,
+    provider_name:String,
     html:String}
     for ogTag{
         ogTitle:String,
@@ -96,6 +103,7 @@ The API requires the following dependencies:
 ## Response
 
 - userCreation
+```
 {
 "status": true,
     "message": "Sucessfully SignedUp",
@@ -110,8 +118,9 @@ The API requires the following dependencies:
         "__v": 0
     }
 }
+```
 - Post Creation
-
+```
 {
     "status": true,
     "message": "postCreated",
@@ -133,5 +142,6 @@ The API requires the following dependencies:
         "updatedAt": "2023-04-14T08:38:09.188Z",
         "__v": 0
     }
+    
 }
-
+```
