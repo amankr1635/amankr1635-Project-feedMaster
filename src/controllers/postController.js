@@ -47,7 +47,7 @@ const createPost = async function (req, res) {
     let obj = {userId:userId};
     if (oembededUrl) {
       let checkUrl = await axios.get(oembededUrl);
-      obj = { ...obj, ...checkUrl.data };
+      obj = { ...obj, ...checkUrl.data,url };
     } else {
       let ogData = await getOgUrl(url);
       obj = {...obj,...ogData}
@@ -65,9 +65,13 @@ const createPost = async function (req, res) {
 
 const getUserPost = async function(req, res) {
   try {
+    let userIdFromParams = req.params.userId
     let userId = req.decodedToken.userId
-  
-    let allPostForUser = await postModel.find({userId: userId,isDeleted:false})
+    
+    if(userIdFromParams!=userId){
+      return res.status(403).send({status:false,message:"you are not authorised"})
+    }
+    let allPostForUser = await postModel.find({userId:userIdFromParams,isDeleted:false})
     if(allPostForUser.length === 0) return res.status(404).send({status: false, message: "No posts found"})
   
     return res.status(200).send({status: true, data: allPostForUser})

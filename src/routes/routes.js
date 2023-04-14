@@ -10,12 +10,12 @@ router.get("/test-me",(req,res)=>{
 
 router.post("/signUp",  CreateUser);
 router.post("/login",userLogin);
+// oembed in post api
 router.post("/post",authentication,createPost);
-router.get("/myPosts",authentication,getUserPost);
+router.get("/myPosts/:userId",authentication,getUserPost);
 router.get("/allPost",getPostData);
 
  
-// oembed in backend save ombed code in db while creating post
 router.delete("/post/:postId",authentication, deletePost);
 
 

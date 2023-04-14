@@ -65,7 +65,7 @@ try {
                 let token = jwt.sign({userId:userCheck._id},"secrateCodeforLogIn")
                 token=token.toString()
                 res.setHeader("x-api-key", token);
-                return res.status(200).send({status:true,message:"Sucessfully LogedIn",name:userCheck.name,token:token})
+                return res.status(200).send({status:true,message:"Sucessfully LogedIn",name:userCheck.name,token:token,userId:userCheck._id})
             }else{
                 return res.status(400).send({status:false,message:"Invalid password"})
             }

@@ -1,6 +1,4 @@
 const jwt = require("jsonwebtoken");
-const userModel = require("../models/userModel");
-const postModel = require("../models/postModel");
 
 const authentication = async function(req,res,next){
     try {
@@ -18,5 +16,15 @@ const authentication = async function(req,res,next){
         return res.status(500).send({status:false,message:error.message})
     }
 }
+
+
+// const authorization = async function(req,res,next){
+//     let userId = req.params.userId
+
+// }
+
+
+
+
 
 module.exports = {authentication}
