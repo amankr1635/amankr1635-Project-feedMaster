@@ -53,7 +53,7 @@
 
 ## Endpoints
 #### signUp
-```http
+```ymal
     POST /signUp
 ```
 - Allows users to sign up by creating a new account. Requires the user's name, email,phone, and password to create a new account.
