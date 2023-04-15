@@ -14,7 +14,6 @@ router.post("/login",userLogin);
 router.post("/post",authentication,createPost);
 router.get("/myPosts/:userId",authentication,getUserPost);
 router.get("/allPost",getPostData);
-
  
 router.delete("/post/:postId",authentication, deletePost);
 
