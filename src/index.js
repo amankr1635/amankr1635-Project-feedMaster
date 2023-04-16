@@ -10,10 +10,6 @@ app.use(express.json())
 
 dbConnect()
 
-// mongoose.connect(process.env.mongo_Url)
-// .then(()=> console.log("mongoDb is connected"))
-// .catch((err)=> console.log(err))
-
 app.use("/",route)
 
 app.listen(process.env.port,()=>{
