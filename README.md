@@ -2,7 +2,7 @@
 
 ## About Project:-
 
-- Project is about MetaTags and ogTags.Meta tag and ogTag provides the title,description of the webpage and appears in search engine results as the clickable link.
+- The project is focused on MetaTags and ogTags, which provide essential information such as the webpage title and description. This information is displayed as a clickable link in search engine results. Once a user is logged in, they can input a URL, and the application will perform oEmbeding to extract data from the URL and store it in a database for future use.
 
 
 ### Models
