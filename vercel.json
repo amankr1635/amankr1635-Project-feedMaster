@@ -3,14 +3,14 @@
     "name": "feedMaster",
     "builds": [
       {
-        "src": "./src/index.js",
+        "src": "index.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/index.js"
+        "dest": "src/index.js"
       }
     ]
   }
