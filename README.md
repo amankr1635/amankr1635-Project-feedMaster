@@ -52,7 +52,7 @@
 ```
 
 ## Endpoints
-#### signUp
+#### /signUp
 ```ymal
     POST /signUp
 ```
@@ -60,40 +60,40 @@
 Note:{Strong password required minimum 8 character}
 
 #### /login
-```http
+```ymal
     POST /login
 ```
 - Allows users to log in to their account. Requires the user's email and password to authenticate the user.
 
 #### /post
-```http
+```ymal
  POST /post
  ```
 - Allows users to create a new post. Requires authentication with a valid token and the post's url.
 url is oEmbed by its defined embeded code  or by (open-graph-scraper),it is a npm package for og tags. 
 
 #### /myPosts/:userId
-```http
+```ymal
  GET /myPosts/:userId
  ```
 - Allows users to retrieve their posts by providing their user ID. Requires authentication with a valid token.and in response it gives us an array of object and it gives all post which is created by that particular user.
 
 #### /allPost
-```http
+```ymal
  GET /allPost
  ```
 - Allows users to retrieve all posts that have been created. Does not require authentication.
 it response all post which is created by all user of our website 
 
 #### /post/:postId
-```http
+```ymal
  DELETE /post/:postId
 ```
 - Allows users to delete a post by providing the post ID. Requires authentication with a valid token. and in this authentication and authorization implemented.
 
 
 ### How to run the API
-```http
+```ymal
 To run the API, first, install the required dependencies using the command npm install. After installing the dependencies, start the server using the command npm start.
 
 ```
@@ -101,7 +101,7 @@ To run the API, first, install the required dependencies using the command npm i
 
 - Dependencies
 The API requires the following dependencies:
-```http
+```
 - Express.js
 - Body-parser
 - axios
