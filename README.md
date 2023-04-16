@@ -97,7 +97,7 @@ it response all post which is created by all user of our website
 To run the API, first, install the required dependencies using the command npm install. After installing the dependencies, start the server using the command npm start.
 
 ```
-+ The API can be accessed at http://localhost:3001/.
++ The API can be accessed at https://feed-master.onrender.com/.
 
 - Dependencies
 The API requires the following dependencies:
