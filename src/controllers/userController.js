@@ -125,7 +125,7 @@ const userLogin = async function (req, res) {
         throw err;
       }
       if (pass) {
-        let token = jwt.sign({ userId: userCheck._id }, "secrateCodeforLogIn");
+        let token = jwt.sign({ userId: userCheck._id },`${process.env.secrateKey}`);
         token = token.toString();
         res.setHeader("x-api-key", token);
         return res

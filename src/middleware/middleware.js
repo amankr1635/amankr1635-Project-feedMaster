@@ -4,7 +4,7 @@ const authentication = async function(req,res,next){
     try {
         let token = req.headers.authorization.split(" ")[1]
 
-        jwt.verify(token ,"secrateCodeforLogIn",(err,decodedToken)=>{
+        jwt.verify(token ,`${process.env.secrateKey}`,(err,decodedToken)=>{
             if(err)return res.status(400).send({status:false,message:err.message})
             else{
                 req.decodedToken=decodedToken
