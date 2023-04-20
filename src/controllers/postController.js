@@ -67,7 +67,7 @@ const createPost = async function (req, res) {
 const getUserPost = async function(req, res) {
   try {
     let userIdFromParams = req.params.userId
-    if(!!mongoose.Types.ObjectId.isValid(userIdFromParams))return res.status(400).send({staus:false,message:"Enter a valid ObjectId"})
+    if(!mongoose.isValidObjectId(userIdFromParams))return res.status(400).send({staus:false,message:"Enter a valid ObjectId"})
     
     let allPostForUser = await postModel.find({userId:userIdFromParams,isDeleted:false})
     if(allPostForUser.length === 0) return res.status(404).send({status: false, message: "No posts found"})
@@ -81,6 +81,7 @@ const getUserPost = async function(req, res) {
 const getPostData = async function(req,res){
   try {
     let userId = req.query.userId
+    if(!mongoose.isValidObjectId(userId))return res.status(400).send({status:false,message:"Enter a valid ObjectId"})
     if(!userId){
       let allData = await postModel.find({isDeleted:false})
       return res.status(200).send({status:true,data:allData})
