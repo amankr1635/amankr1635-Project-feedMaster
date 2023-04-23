@@ -81,12 +81,12 @@ const getUserPost = async function(req, res) {
 const getPostData = async function(req,res){
   try {
     let userId = req.query.userId
-    if(!mongoose.isValidObjectId(userId))return res.status(400).send({status:false,message:"Enter a valid ObjectId"})
     if(!userId){
       let allData = await postModel.find({isDeleted:false})
       return res.status(200).send({status:true,data:allData})
     }
     else{
+      if(!mongoose.isValidObjectId(userId))return res.status(400).send({status:false,message:"Enter a valid ObjectId"})
       let dataFromQuery = await postModel.find({userId : userId,isDeleted:false})
       if(!dataFromQuery)return res.status(404).send({status:false,message:"No Post Found"})
       return res.status(200).send({status:true,data:dataFromQuery})
